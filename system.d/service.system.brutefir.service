@@ -1,0 +1,15 @@
+[Unit]
+Description=BruteFIR - FFT Convolver
+Documentation=http://docs.syncthing.net/
+After=alsa.target
+Requires=alsa.target
+
+[Service]
+Type=forking
+ExecStart=/storage/.kodi/addons/service.system.brutefir/bin/brutefir
+Restart=on-failure
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+[Install]
+WantedBy=kodi.target
