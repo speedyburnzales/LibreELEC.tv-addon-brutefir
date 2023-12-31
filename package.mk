@@ -27,4 +27,8 @@ addon() {
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib
   cp -r ${PKG_INSTALL}/usr/lib/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib
+
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
+  cp -r ${PKG_DIR}/brutefir_defaults ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
+  cp -r ${PKG_DIR}/brutefir_config.example ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
 }

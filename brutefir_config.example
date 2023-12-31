@@ -1,0 +1,34 @@
+coeff "left" {
+        filename: "dirac pulse";
+};
+
+coeff "right" {
+        filename: "dirac pulse";
+};
+
+input "left", "right" {
+        device: "file" { path: "/run/pulse/fifo_output"; };  # module and parameters to get audio
+        sample: "S16_LE";   # sample format
+        channels: 2/0,1;    # number of open channels / which to use
+        mute: false,false;  # mute active on startup for each channel
+};
+
+output "left", "right" {
+        device: "file" { path: "/run/pulse/fifo_output"; };  # module and parameters to put audio
+        sample: "S16_LE";   # sample format
+        channels: 2/0,1;    # number of open channels / which to use
+        mute: false,false;  # mute active on startup for each channel
+};
+
+filter "left" {
+        inputs: "left";
+        outputs: "left";
+        coeff: "left";
+};
+
+filter "right" {
+        inputs: "right";
+        outputs: "right";
+        coeff: "right";
+};
+
