@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
+
 PKG_NAME="brutefir"
 PKG_VERSION="1.0o"
 PKG_REV="100"
@@ -15,22 +18,13 @@ PKG_TOOLCHAIN="make" # or one of auto, meson, cmake, cmake-make, configure, make
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="BruteFIR"
-PKG_ADDON_TYPE="xbmc.service.library"
-# PKG_ADDON_PROJECTS="[project, only set when not any]"
-# PKG_ADDON_PROVIDES="executable"
-# PKG_ADDON_REQUIRES="some.addon:0.0.0"
-
-#PKG_CMAKE_OPTS_TARGET="-DWITH_EXAMPLE_PATH=/storage/.example
-#                      "
-
-#pre_configure_target() {
-#  do something, or drop it
-#}
+PKG_ADDON_TYPE="xbmc.service"
+PKG_ADDON_REQUIRES="service.system.fftw3:11.0.0.100 service.system.fftw3f:11.0.0.100"
 
 addon() {
-  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-  cp ${PKG_INSTALL}/usr/bin/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-}
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
+  cp ${PKG_INSTALL}/usr/bin/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
 
-# see https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/readme.md for more
-# take a look to other packages, for inspiration
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib
+  cp -r ${PKG_INSTALL}/usr/lib/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib
+}
