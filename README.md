@@ -5,7 +5,7 @@ This project builds [BruteFIR](https://torger.se/anders/brutefir.html) as addon 
 
 ## Build the addon
 
-The addon is build using LibreELEC.tv build-system, so this has to be seup first.
+The addon is build using LibreELEC.tv build-system, so this has to be setup first.
 
 Clone LibreELEC.tv
 
@@ -19,13 +19,13 @@ Change to package-directory
 
 Clone addon-requirements
 
-    git clone https://github.com/chipfunk/LibreELEC.tv-addon-fftw3
-    git clone https://github.com/chipfunk/LibreELEC.tv-addon-fftw3f
+    git clone https://github.com/chipfunk/LibreELEC.tv-addon-fftw3 fftw3
+    git clone https://github.com/chipfunk/LibreELEC.tv-addon-fftw3f fftw3f
 
 
 Clone this addon
 
-    git clone https://github.com/chipfunk/LibreELEC.tv-addon-brutefir
+    git clone https://github.com/chipfunk/LibreELEC.tv-addon-brutefir brutefir
 
 
 Build addon for your target-device and -platform
