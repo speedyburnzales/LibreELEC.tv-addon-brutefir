@@ -1,9 +1,15 @@
 coeff "left" {
-        filename: "dirac pulse";
+        filename: "dirac pulse";        # Use dirac-pulse for testing
+#        filename: "/storage/my/coeffs_left.txt";
+        format: "text";         # S16_BE, S16_LE, FLOAT_LE ...
+        attenuation: 0;
 };
 
 coeff "right" {
-        filename: "dirac pulse";
+        filename: "dirac pulse";        # Use dirac-pulse for testing
+#        filename: "/storage/my/coeffs_right.txt";
+        format: "text";
+        attenuation: 0;
 };
 
 input "left", "right" {
