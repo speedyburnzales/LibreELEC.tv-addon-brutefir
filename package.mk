@@ -8,6 +8,7 @@ PKG_ARCH="any"
 PKG_LICENSE="Proprietary"
 PKG_SITE="https://torger.se/anders/brutefir.html"
 PKG_URL="https://torger.se/anders/files/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_SHA256="caae4a933b53b55b29d6cb7e2803e20819f31def6d0e4e12f9a48351e6dbbe9f"
 PKG_MAINTAINER="chipfunk" # Full name or forum/GitHub nickname, if you want to be identified as the addon maintainer
 PKG_DEPENDS_HOST="flex"
 PKG_DEPENDS_TARGET="alsa-lib fftw3 fftw3f"
