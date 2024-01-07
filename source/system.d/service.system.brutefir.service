@@ -1,8 +1,9 @@
 [Unit]
 Description=BruteFIR - FFT Convolver
-After=sound.target
+After=pulseaudio.service
 
 [Service]
+ExecStartPre=/storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/pulseaudio.sh
 ExecStart=/storage/.kodi/addons/service.system.brutefir/usr/bin/brutefir
 Restart=always
 RestartSec=2

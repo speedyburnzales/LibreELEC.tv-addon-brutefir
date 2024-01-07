@@ -7,8 +7,8 @@ PKG_REV="100"
 PKG_ARCH="any"
 PKG_LICENSE="Proprietary"
 PKG_SITE="https://torger.se/anders/brutefir.html"
-PKG_URL="https://torger.se/anders/files/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-PKG_SHA256="caae4a933b53b55b29d6cb7e2803e20819f31def6d0e4e12f9a48351e6dbbe9f"
+PKG_URL="http://github.com/chipfunk/${PKG_NAME}/archive/refs/tags/${PKG_VERSION}-pulse.tar.gz"
+PKG_SHA256="e6c9af0e6fd504cb16f87da51bd75b2ecb2ef99aae50aea3c368b85265ba52f1"
 PKG_MAINTAINER="chipfunk" # Full name or forum/GitHub nickname, if you want to be identified as the addon maintainer
 PKG_DEPENDS_HOST="flex"
 PKG_DEPENDS_TARGET="alsa-lib fftw3 fftw3f"
@@ -24,10 +24,11 @@ PKG_ADDON_REQUIRES="service.system.fftw3:11.0.0.100 service.system.fftw3f:11.0.0
 
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
-  cp ${PKG_INSTALL}/usr/bin/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
+  cp ${PKG_BUILD}/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
 
-  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib
-  cp -r ${PKG_INSTALL}/usr/lib/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib/brutefir
+  cp -r ${PKG_BUILD}/*.bfio ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib/brutefir
+  cp -r ${PKG_BUILD}/*.bflogic ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib/brutefir
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
   cp -r ${PKG_DIR}/brutefir_defaults ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
