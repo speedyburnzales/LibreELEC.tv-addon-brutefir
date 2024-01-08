@@ -4,7 +4,7 @@ filter_length: 1024;        # length of filters
 overflow_warnings: true;    # echo warnings to stderr if overflow occurs
 show_progress: false;       # echo filtering progress to stderr
 
-coeff "speaker" {
+coeff "left" {
         filename: "dirac pulse";        # Use dirac-pulse for testing
 #        filename: "~/.config/brutefir/my_coeffs.txt";
         format: "text";         # text, S16_BE, S16_LE, FLOAT_LE ...
