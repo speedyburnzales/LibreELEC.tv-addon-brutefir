@@ -5,6 +5,8 @@ if [ ! -f "/storage/.brutefir_config" ]; then
     cp /storage/.kodi/addons/brutefir/share/brutefir/brutefir_config.example /storage/.brutefir_config
 fi
 
+. /storage/.kodi/addons/brutefir/bin/shutdown.sh
+
 # Provide ALSA output
 pactl load-module module-alsa-sink >> $PULSEAUDIO_MODULES_FILE
 

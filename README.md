@@ -43,18 +43,15 @@ This output will be picked up by BruteFIR's IO-module `pulse`.
 The filtered output from BruteFIR is available as a PulseAudio source-output,
 which has to be connected to an output for actual sound, e.g. the ALSA-device "default".
 
-Described audio-setup is provided by script `/storage/.kodi/addons/brutefir/usr/share/brutefir/pulseaudio.sh`, but you can use other mechanisms to do so.
+The described audio-setup is provided by script `/storage/.kodi/addons/brutefir/usr/share/brutefir/startup.sh`, which is executed on service-startup.
+The loaded modules are unloaded on service-failure or -shutdown `/storage/.kodi/addons/brutefir/usr/share/brutefir/shutdown.sh`.
 
 
 ### Configure PulseAudio to provide null-sink to stream to BruteFIR
 
-Load null-sink to loopback Kodi-output to BruteFIRs input-stream
+Load null-sink to loopback KODI-output to BruteFIRs input-stream
 
     pactl load-module module-null-sink sink_name="BruteFIR"
-
-Declare null-sink as default output, will pickup audio from its monitor-out.
-
-    pactl set-default-sink BruteFIR
 
 
 ### Activate ALSA soundcard
@@ -62,6 +59,16 @@ Declare null-sink as default output, will pickup audio from its monitor-out.
 Provide ALSA-card to PulseAudio by loading module `module-alsa-sink`. The resulting sink will be named `alsa_output.default`.
 
     pactl load-module module-alsa-sink device=default
+
+
+### Set default sink
+
+Declare null-sink as default output, BruteFIR will pickup audio from its monitor-out `BruteFIR.monitor`.
+
+    pactl set-default-sink BruteFIR
+
+
+###
 
 
 ### Set KODI to output audio via PulseAudio
