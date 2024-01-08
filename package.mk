@@ -12,7 +12,7 @@ PKG_SHA256="e6c9af0e6fd504cb16f87da51bd75b2ecb2ef99aae50aea3c368b85265ba52f1"
 PKG_MAINTAINER="chipfunk" # Full name or forum/GitHub nickname, if you want to be identified as the addon maintainer
 PKG_DEPENDS_HOST="flex"
 PKG_DEPENDS_TARGET="pulseaudio alsa-lib fftw3 fftw3f"
-PKG_SECTION="service/system"
+PKG_SECTION=""
 PKG_SHORTDESC="FIR convolver"
 PKG_LONGDESC="BruteFIR is a software convolution engine, a program for applying long FIR filters to multi-channel digital audio."
 PKG_TOOLCHAIN="make" # or one of auto, meson, cmake, cmake-make, configure, make, ninja, autotools, manual
@@ -20,17 +20,24 @@ PKG_TOOLCHAIN="make" # or one of auto, meson, cmake, cmake-make, configure, make
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="BruteFIR"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="service.system.fftw3:11.0.0.100 service.system.fftw3f:11.0.0.100"
+PKG_ADDON_VERSION="0.1.0";
+PKG_ADDON_REQUIRES="fftw3:0.1.0 fftw3f:0.1.0"
 
 addon() {
-  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
-  cp ${PKG_BUILD}/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/bin
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+  cp ${PKG_BUILD}/brutefir ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+  chmod +x ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/brutefir
 
-  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib/brutefir
-  cp -r ${PKG_BUILD}/*.bfio ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib/brutefir
-  cp -r ${PKG_BUILD}/*.bflogic ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/lib/brutefir
+  cp ${PKG_DIR}/startup.sh ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+  chmod +x ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/startup.sh
 
-  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
-  cp -r ${PKG_DIR}/brutefir_config.example ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
-  cp -r ${PKG_DIR}/pulseaudio.sh ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share/brutefir
+  cp ${PKG_DIR}/shutdown.sh ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+  chmod +x ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/shutdown.sh
+
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
+  cp ${PKG_BUILD}/*.bfio ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
+  cp ${PKG_BUILD}/*.bflogic ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
+
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/share/brutefir
+  cp ${PKG_DIR}/brutefir_config.example ${ADDON_BUILD}/${PKG_ADDON_ID}/share/brutefir
 }

@@ -67,5 +67,5 @@ to actually build the addon.
 
 You should end-up with a zip-file in folder
 
-    target/addons/11.0/${PROJECT}/service.system.brutefir/service.system.brutefir-${VERSION}-${ADDON_VERSION}.zip
+    target/addons/11.0/${PROJECT}/brutefir/brutefir-${VERSION}-${ADDON_VERSION}.zip
 

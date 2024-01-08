@@ -43,7 +43,7 @@ This output will be picked up by BruteFIR's IO-module `pulse`.
 The filtered output from BruteFIR is available as a PulseAudio source-output,
 which has to be connected to an output for actual sound, e.g. the ALSA-device "default".
 
-Described audio-setup is provided by script `/storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/pulseaudio.sh`, but you can use other mechanisms to do so.
+Described audio-setup is provided by script `/storage/.kodi/addons/brutefir/usr/share/brutefir/pulseaudio.sh`, but you can use other mechanisms to do so.
 
 
 ### Configure PulseAudio to provide null-sink to stream to BruteFIR
@@ -66,14 +66,16 @@ Provide ALSA-card to PulseAudio by loading module `module-alsa-sink`. The result
 
 ### Set KODI to output audio via PulseAudio
 
-Use the menu `Settings/LibreELEC/Audio` to switch KODI output to PulseAudio. Select the newly available device.
+Use the menu `Settings -> System -> Audio` to switch KODI output to PulseAudio.
 
 
 ## Configuration
 
+It is neccessary to configure `LD_LIBRARY_PATH` to allow BruteFIR to load its io-modules.
+
 BruteFIR loads its configuration from file `/storage/.brutefir_config`. An exmaple is provided in
 
-    /storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/brutefir_config.example
+    /storage/.kodi/addons/brutefir/usr/share/brutefir/brutefir_config.example
 
 By configuring a PulseAudio `device`-name the sound-server will auto-connect the sink-inputs and source-outputs to the configured and available sinks and sources.
 
@@ -106,17 +108,17 @@ A short list of helpful commands for pulseaudio
 
 #### Start the service
 
-    systemctl start service.system.brutefir.service
+    systemctl start brutefir.service
 
 
 #### Stop the service
 
-    systemctl stop service.system.brutefir.service
+    systemctl stop brutefir.service
 
 
 #### Restart the service
 
-    systemctl restart service.system.brutefir.service
+    systemctl restart brutefir.service
 
 
 Happy filtering :)

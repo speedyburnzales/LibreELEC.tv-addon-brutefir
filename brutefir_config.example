@@ -21,7 +21,7 @@ coeff "right" {
 # module and parameters to get audio
 input "left", "right" {
         device: "pulse" {
-                server: "";    # Host to connect to
+#                server: "";    # Host to connect to
                 app_name: "BruteFIR 1.0o-pulse module";    # This application name
                 device: "BruteFIR.monitor";
                 stream_name: "Input for BruteFIR service";
@@ -34,9 +34,9 @@ input "left", "right" {
 # module and parameters to put audio
 output "left", "right" {
         device: "pulse" {
-                server: "";    # Host to connect to
+#                server: "";    # Host to connect to
                 app_name: "BruteFIR 1.0o-pulse module";    # This application name
-                device: "alsa_output,default";
+                device: "alsa_output.default";
                 stream_name: "Output of BruteFIR service";
         };
         sample: "S16_LE";   # sample format
