@@ -20,8 +20,8 @@ PKG_TOOLCHAIN="make" # or one of auto, meson, cmake, cmake-make, configure, make
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="BruteFIR"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_VERSION="0.1.0";
-PKG_ADDON_REQUIRES="fftw3:0.1.0 fftw3f:0.1.0"
+PKG_ADDON_VERSION="1.0.0";
+PKG_ADDON_REQUIRES="fftw3:1.0.0 fftw3f:1.0.0"
 
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin

@@ -29,15 +29,15 @@ Install addon using the menu `Install from ZIP-file`.
 
 [FFTW3](https://fftw.org) has to be available as a shared library. It is provided as two separate addons that have to be installed.
 
-- [fftw3](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3)
-- [fftw3f](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3f)
+- [fftw3](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3//releases)
+- [fftw3f](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3f//releases)
 
 
 ## Configuration
 
-BruteFIR loads its configuration from file `/storage/.brutefir_config`. An exmaple is provided in
+BruteFIR loads its configuration from file `/storage/.brutefir_config`.
 
-    /storage/.kodi/addons/brutefir/usr/share/brutefir/brutefir_config.example
+The provided example in `brutefir_config.example` will be copied in place if no existing config-file is found.
 
 By configuring a PulseAudio `device`-name the sound-server will auto-connect the sink-inputs and source-outputs to the configured and available sinks and sources.
 
@@ -47,11 +47,15 @@ Configure different application-names via param `app_name` if you have multiple 
 ## Service startup and shutdown
 
 The described audio-setup is provided by script `/storage/.kodi/addons/brutefir/usr/share/brutefir/startup.sh`, which is executed on service-startup.
+
 The loaded modules are then stored in `/storage/.brutefir-pulseaudio.modules`.
+
 The modules are unloaded on service-shutdown or -failure by `/storage/.kodi/addons/brutefir/usr/share/brutefir/shutdown.sh`.
 
 
 ## Setup audio-routing via PulseAudio
+
+I've choosen this setup as it gives me a short and constant delay in audio-output when playing media in KODI.
 
 Kernel-module `snd-aloop` is missing, so the audio-signal is routed through PulseAudio.
 
@@ -85,10 +89,14 @@ Declare null-sink as default output, BruteFIR will pickup audio from its monitor
 
 ### Reboot
 
+You should hear sounds when reboot is completed.
+
+In KODI settings `Settings -> System -> Audio` the previously available ALSA-devices should be gone, because the PulseAudio module `module-als-sink` already uses them.
+
 
 ### Set KODI to output audio via PulseAudio
 
-Use the menu `Settings -> System -> Audio` to switch KODI output to PulseAudio.
+If you don't hear any sounds by now, use the menu `Settings -> System -> Audio` to switch KODI output to PulseAudio.
 
 
 ## Troubleshooting
