@@ -33,6 +33,24 @@ Install addon using the menu `Install from ZIP-file`.
 - [fftw3f](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3f)
 
 
+## Configuration
+
+BruteFIR loads its configuration from file `/storage/.brutefir_config`. An exmaple is provided in
+
+    /storage/.kodi/addons/brutefir/usr/share/brutefir/brutefir_config.example
+
+By configuring a PulseAudio `device`-name the sound-server will auto-connect the sink-inputs and source-outputs to the configured and available sinks and sources.
+
+Configure different application-names via param `app_name` if you have multiple instances of BruteFIR connecting to the same PulseAudio-server.
+
+
+## Service startup and shutdown
+
+The described audio-setup is provided by script `/storage/.kodi/addons/brutefir/usr/share/brutefir/startup.sh`, which is executed on service-startup.
+The loaded modules are then stored in `/storage/.brutefir-pulseaudio.modules`.
+The modules are unloaded on service-shutdown or -failure by `/storage/.kodi/addons/brutefir/usr/share/brutefir/shutdown.sh`.
+
+
 ## Setup audio-routing via PulseAudio
 
 Kernel-module `snd-aloop` is missing, so the audio-signal is routed through PulseAudio.
@@ -42,9 +60,6 @@ This output will be picked up by BruteFIR's IO-module `pulse`.
 
 The filtered output from BruteFIR is available as a PulseAudio source-output,
 which has to be connected to an output for actual sound, e.g. the ALSA-device "default".
-
-The described audio-setup is provided by script `/storage/.kodi/addons/brutefir/usr/share/brutefir/startup.sh`, which is executed on service-startup.
-The loaded modules are unloaded on service-failure or -shutdown `/storage/.kodi/addons/brutefir/usr/share/brutefir/shutdown.sh`.
 
 
 ### Configure PulseAudio to provide null-sink to stream to BruteFIR
@@ -68,25 +83,12 @@ Declare null-sink as default output, BruteFIR will pickup audio from its monitor
     pactl set-default-sink BruteFIR
 
 
-###
+### Reboot
 
 
 ### Set KODI to output audio via PulseAudio
 
 Use the menu `Settings -> System -> Audio` to switch KODI output to PulseAudio.
-
-
-## Configuration
-
-It is neccessary to configure `LD_LIBRARY_PATH` to allow BruteFIR to load its io-modules.
-
-BruteFIR loads its configuration from file `/storage/.brutefir_config`. An exmaple is provided in
-
-    /storage/.kodi/addons/brutefir/usr/share/brutefir/brutefir_config.example
-
-By configuring a PulseAudio `device`-name the sound-server will auto-connect the sink-inputs and source-outputs to the configured and available sinks and sources.
-
-Configure different application-names via param `app_name` if you have multiple instances of BruteFIR connecting to the same PulseAudio-server.
 
 
 ## Troubleshooting
