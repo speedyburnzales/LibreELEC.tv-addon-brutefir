@@ -2,22 +2,15 @@
 
 This project builds [BruteFIR with PulseAudio support](https://github.com/chipfunk/brutefir) as addon for LibreELEC.tv based distributions.
 
-It supports the following IO modules
-- `alsa` for traditional ALSA support
+As the patches to BruteFIR are IMHO not yet ready for inclusion in some official BruteFIR release, the orignal sources from [Anders Torger's homepage for BruteFIR](http://www.ludd.ltu.se/~torger/brutefir.html) could NOT be used. The sources are hosted in the [integration-repository](https://github.com/chipfunk/brutefir) instead.
+
+The packaged BruteFIR supports the following i/o- or logic-modules
+
 - `pulse` for connecting to a PulseAudio-server
-- `file` for file-support
-
-
-As the patches to BruteFIR are not yet ready for inclusion in the official BruteFIR release, but for general hobby-/amateur-usage, i do NOT use the orignal sources from [Anders Torger's homepage for BruteFIR](http://www.ludd.ltu.se/~torger/brutefir.html) but my own integration-repository.
-
-
-## Installation
-
-As there is no addon-repository available the addon and its requirements have to be installed via ZIP-file.
-
-Copy resulting zip-file to libreelec-host or some other (USB-)storage-device.
-
-Install addon using the menu `Install from ZIP-file`.
+- `alsa` for ALSA support
+- `file`
+- `cli`
+- `eq`
 
 
 ### Prerequisites
@@ -26,6 +19,31 @@ Install addon using the menu `Install from ZIP-file`.
 
 - [fftw3](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3)
 - [fftw3f](https://github.com/chipfunk/LibreELEC.tv-addon-fftw3f)
+
+
+## Installation
+
+There is no addon-repository for distribution (yet?), the addon and its requirements MUST be installed via ZIP-file transfer.
+
+Either copy the zip-file to libreelec-host via file-transfer or use some other (USB-)storage-device.
+
+Then install addon using menu `Install from ZIP-file`.
+
+
+## Configuration
+
+BruteFIR loads its configuration from file `/storage/.brutefir_config`. An exmaple is provided in
+
+    /storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/brutefir_config.example
+
+Copy it to `/storage/.brutefir_config`
+
+    cp /storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/brutefir_config.example /storage/.brutefir_config
+
+
+By configuring a PulseAudio `device`-name the sound-server will auto-connect the sink-inputs and source-outputs to the configured sinks and sources.
+
+Configure different application-names via param `app_name` if you have multiple instances of BruteFIR connecting to the same PulseAudio-server.
 
 
 ## Setup audio-routing via PulseAudio
@@ -68,17 +86,6 @@ To make the changes permanent you can use `kodi-autostart` service to execute au
 The above script is included, copy or append it to `/storage/.config/autostart.sh`.
 
     echo 'sh /storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/pulseaudio.sh' >> /storage/.config/autostart.sh
-
-
-## Configuration
-
-BruteFIR loads its configuration from file `/storage/.brutefir_config`. An exmaple is provided in
-
-    /storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/brutefir_config.example
-
-By configuring a PulseAudio `device`-name the sound-server will auto-connect the sink-inputs and source-outputs to the configured and available sinks and sources.
-
-Configure different application-names via param `app_name` if you have multiple instances of BruteFIR connecting to the same PulseAudio-server.
 
 
 ## Build the addon
