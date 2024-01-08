@@ -7,7 +7,7 @@ ExecStartPre=/storage/.kodi/addons/service.system.brutefir/usr/share/brutefir/pu
 ExecStart=/storage/.kodi/addons/service.system.brutefir/usr/bin/brutefir
 Restart=always
 RestartSec=2
-Environment="LD_LIBRARY_PATH=/usr/lib:/usr/lib/pulseaudio:/storage/.kodi/addons/service.system.fftw3:/storage/.kodi/addons/service.system.fftw3f"
+Environment="LD_LIBRARY_PATH=/storage/.kodi/addons/service.system.brutefir/usr/lib/brutefir:/usr/lib:/usr/lib/pulseaudio:/storage/.kodi/addons/service.system.fftw3:/storage/.kodi/addons/service.system.fftw3f"
 
 [Install]
 WantedBy=kodi.target
